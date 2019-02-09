@@ -3,6 +3,47 @@ var botui = new BotUI('Sunshine');
 var user_feeling = 0;
 var name = '';
 
+function funny_animal_video()
+{
+    botui.message.add({
+       content: 'Which of the animals do you like the best? Cat? Bats or Hedgehogs?'
+    }).then(function () {
+        botui.action.text({
+          action: {
+            placeholder: 'Enter your text here'
+          }
+        }).then(function (res) {
+            switch(res.value.toLowerCase()) {
+              case "cat":
+              case "cats":
+                botui.message.add({
+                  type: 'embed', // this is 'text' by default
+                  content: 'https://www.youtube.com/embed/hyjkWYM190E'
+                });
+                break;
+              case "bat":
+              case "bats":
+                botui.message.add({
+                  type: 'embed', // this is 'text' by default
+                  content: 'https://www.youtube.com/embed/BV1TNxBh_gM'
+                });
+                break;
+              case "hedgehog":
+              case "hedgehogs":
+                botui.message.add({
+                  type: 'embed', // this is 'text' by default
+                  content: 'https://www.youtube.com/embed/wWxwUUJDzMc'
+                });
+                break;
+                default:
+                botui.message.add({
+                   content: 'Sorry, but if that is an animal, i don\'t know it. I guess my AI creator was to dumb to teach me :P'
+                })
+            }
+        }).then(deal_with_answer);
+    });
+}
+
 function quote() {
   botui.message.add({
     content: 'I also have days like that... do you want me to show you a cool quote?'
@@ -139,11 +180,7 @@ function loop_conversation() {
       break;
 
     case "1":
-      botui.message.add(
-        {
-          content: "Awww " + name + " so your feeling sad? How about a funny video to cheer you up?"
-        })
-        .then(deal_with_answer)
+        funny_animal_video()
       break;
 
     case "2":
