@@ -103,7 +103,7 @@ function quote() {
 
 function ask_how_user_is() {
   botui.message.add({
-    content: "On a scale of 1 to 10 how are you today?"
+    content: "On a scale of 1 to 5 how are you today?"
   })
     .then(function () {
       botui.action.button(
@@ -162,7 +162,7 @@ function deal_with_answer() {
         case 'y':
           botui.message.add(
             {
-              content: "Thats great have a nice day!"
+              content: "That\'s great have a nice day!"
             }
           )
           break;
@@ -190,14 +190,14 @@ function loop_conversation() {
     case "3":
       botui.message.add(
         {
-          content: "Awww " + name + " so your feeling sad? How about something nice to cheer you up?"
+          content: "Awww " + name + " so your not that good? How about something nice to cheer you up?"
         }
       )
         .then(function () {
           botui.message.add(
             {
               type: 'html',
-              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-famous.jpg" widht="200">'
+              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-famous.jpg" width="200">'
             }
           )
         }
@@ -208,14 +208,14 @@ function loop_conversation() {
     case "4":
       botui.message.add(
         {
-          content: "Awww " + name + " so your feeling sad? How about a dog to cheer you up?"
+          content:  name + " have a picture to make you laugh!"
         }
       )
         .then(function () {
           botui.message.add(
             {
               type: 'html',
-              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-pics.jpg" widht="200">'
+              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-pics.jpg" width="200">'
             }
           )
         }
@@ -289,7 +289,7 @@ function main() {
       content: 'https://giphy.com/embed/T3Vx6sVAXzuG4'
     }).then(function () {
       botui.message.add({
-        content: 'Whats your name?'
+        content: 'What\'s your name?'
       }).then(function () { // wait till previous message has been shown.
         botui.action.text({
           action: { placeholder: "your name...." }
