@@ -90,7 +90,7 @@ function quote() {
                     })
                   })
                 })
-              })
+              }).then(deal_with_answer)
               break;
 
             case 'nope':
