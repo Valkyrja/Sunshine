@@ -1,12 +1,11 @@
       var botui = new BotUI('hello-world');
 
       botui.message.add({
-        content: 'Hello World from bot!'
+        content: 'Hello girl, I knew I will see you in this awesome chatpot'
       }).then(function () { // wait till previous message has been shown.
 
         botui.message.add({
-          delay: 1000,
-          human: true,
-          content: 'Hello World from human!'
+          type: 'embed', // this is 'text' by default
+          content: 'https://giphy.com/embed/T3Vx6sVAXzuG4'
         });
       });
