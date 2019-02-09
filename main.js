@@ -1,50 +1,11 @@
-      var botui = new BotUI('Sunshine');
+var botui = new BotUI('Sunshine');
+var user_feeling = 0;
+var name = '';
 
-
-function deal_with_answer(answer)
+function ask_how_user_is()
 {
     botui.message.add({
-        content: 'You said: ' + answer.value
-      });
-}
-
-function loop_conversation()
-{
-    botui.action.text({
-      action: {
-        placeholder: 'Enter your text here'
-      }
-    }).then(deal_with_answer)
-    .then(loop_conversation);
-}
-
-function main()
-{
-  botui.message.add({
-    content: 'Hello girl, I knew I will see you in this awesome chatpot'
-  }).then(function () { // wait till previous message has been shown.
-    botui.message.add({
-      type: 'embed', // this is 'text' by default
-      content: 'https://giphy.com/embed/T3Vx6sVAXzuG4'
-    });
-  }).then(botui.message.add({
-        content: 'Whats up?'
-      }).then(loop_conversation));
-}
-
-botui.message.add({
-content: 'Whats your name?'
-}).then(function () { // wait till previous message has been shown.
-  botui.action.text({
-    action: {placeholder:"your name...."}
-  })
-  .then(function(username){
-    botui.message.add({
-      content:"Hello " + username.value + " nice to meet you!"})
-    })
-    .then(function(){
-      botui.message.add({
-        content:"On a scale of 1 to 10 how are you today?"})
+        content: "On a scale of 1 to 10 how are you today?"
       })
       .then(function(){
         botui.action.button(
@@ -92,9 +53,60 @@ content: 'Whats your name?'
               }                    
             ]
           }
-        )
+        ).then(function (res) {
+            user_feeling = res.value
+            loop_conversation();
+        })
       })
+}
+      
+function deal_with_answer(answer)
+{
+    botui.message.add({
+        content: name + ' said: ' + answer.value
+      });
+}
 
-  });
+function loop_conversation()
+{
+    if (user_feeling == 0) {
+        ask_how_user_is();
+    }
+    else
+    {
+        botui.action.text({
+          action: {
+            placeholder: 'Enter your text here'
+          }
+        }).then(deal_with_answer)
+        .then(loop_conversation);
+    }
+}
+
+function main()
+{
+    botui.message.add({
+        content: 'Hello girl, I knew I will see you in this awesome chatpot'
+    }).then(function () {
+        botui.message.add({
+            type: 'embed', // this is 'text' by default
+            content: 'https://giphy.com/embed/T3Vx6sVAXzuG4'
+        }).then(function () {
+            botui.message.add({
+                content: 'Whats your name?'
+            }).then(function () { // wait till previous message has been shown.
+                  botui.action.text({
+                    action: {placeholder:"your name...."}
+                  }).then(function(username){
+                      name = username.value;
+                      botui.message.add({
+                          content:"Hello " + username.value + " nice to meet you!"
+                      }).then(loop_conversation);
+                  });
+            });
+        });    
+    });
+}
+
 main(); 
 
