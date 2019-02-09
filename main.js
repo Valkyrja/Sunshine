@@ -48,10 +48,10 @@ function quote() {
                       content: quote_obj.author + ' says: ' + '"' + quote_obj.quote + '"'
                     })
                   })
-
                 })
               })
               break;
+
             case 'nope':
               ask_how_user_is()
               break;
@@ -148,7 +148,6 @@ function loop_conversation() {
 
     case "2":
       quote()
-        .then(deal_with_answer)
       break;
 
     case "3":
