@@ -89,8 +89,8 @@ function quote() {
                       content: quote_obj.author + ' says: ' + '"' + quote_obj.quote + '"'
                     })
                   })
-                })
-              }).then(deal_with_answer)
+                }).then(deal_with_answer)
+              })
               break;
 
             case 'nope':
@@ -162,7 +162,7 @@ function deal_with_answer() {
         case 'y':
           botui.message.add(
             {
-              content: "That\'s great have a nice day!"
+              content: "Thats great have a nice day!"
             }
           )
           break;
@@ -190,14 +190,14 @@ function loop_conversation() {
     case "3":
       botui.message.add(
         {
-          content: "Awww " + name + " so your not that good? How about something nice to cheer you up?"
+          content: "Awww " + name + " so your feeling sad? How about something nice to cheer you up?"
         }
       )
         .then(function () {
           botui.message.add(
             {
               type: 'html',
-              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-famous.jpg" width="200">'
+              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-famous.jpg" widht="200">'
             }
           )
         }
@@ -208,14 +208,14 @@ function loop_conversation() {
     case "4":
       botui.message.add(
         {
-          content:  name + " have a picture to make you laugh!"
+          content: "Awww " + name + " so your feeling sad? How about a dog to cheer you up?"
         }
       )
         .then(function () {
           botui.message.add(
             {
               type: 'html',
-              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-pics.jpg" width="200">'
+              content: '<img src= "https://quotesnhumor.com/wp-content/uploads/2015/08/Top-50-Funniest-Memes-Collection-meme-pics.jpg" widht="200">'
             }
           )
         }
@@ -289,7 +289,7 @@ function main() {
       content: 'https://giphy.com/embed/T3Vx6sVAXzuG4'
     }).then(function () {
       botui.message.add({
-        content: 'What\'s your name?'
+        content: 'Whats your name?'
       }).then(function () { // wait till previous message has been shown.
         botui.action.text({
           action: { placeholder: "your name...." }
